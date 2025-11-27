@@ -1,14 +1,77 @@
 import pickle
 import random
+from random import randint
 import re
 import numpy
+import unittest
+import logging
+
+#  #ClydeBank Coffee Shop SImulator 4000
+# -#Copyright (C) 2023 ClydeBank Media, All Rights Reserved.
+# +# Copyright (C) 2024 ClydeBank Media, All Rights Reserved.
+#   In this listing, yo ucan see a minus sign in front of the line thaat was deleted and a plus sign in front of the line that was added. THe line to be deleted will be shown in red, and the line
+# added in green.
+#   You can press the Q key to exit the diff viewer.
+
+# Viewing Your Commit Log
+# As your Git repository grows with changes, you can use...
+# git log
+#   ... to see a listing of all the commits you've made. The results will look something like this:
+# commit 600258b5273bc4a13ee6201fd6304efc61baef5a (HEAD main, origin/main, origin/EADE
+# Author: Robert W. Oliver 11 <118407+rwoliver2@users.noreply.github.com>
+# Dates: Sun Jul 3 23:11:07 2022-0500
+#   Update README.md
+# commit Par786119023bd2ac2d023ce8b2f2ed664f7336
+# Authors Robert K. Oliver II <118407+rwoliver2@users.noreply.github.com>
+# Date: Sun Jul 3 23:07:07 2022-0500
+
+# Initial commit
+# As with the diff command, you can press Q to exit the viewer. If there are few commits, the results will be displayed, and you will be returned to the command prompt
+
+
 
 class CoffeeShopSimulator:
 
+    def write_file(data="homotophic", filename="fox.txt"):
+        try:
+            with open(str(filename), mode="w", encoding="utf-8") as f:
+                data_written=f.write(str(data))
+        except Exception as e:
+            logging.basicConfig(
+            filename="test_log",
+            encoding="utf-8",
+            level=logging.DEBUG
+            )
+            logging.debug("This is a debug message.")
+
+            # Log an INFO message
+            logging.info("This is an info message.")
+
+            # Log an ERROR message
+            logging.error("This is an error")
+
+            # Log a CRITICAL message
+            logging.critical("Something major went wrong!")
+
+            return False
+        with open(str(filename), encoding="utf-8", mode="r") as f:
+            f.read(32)
+        return True
+
+    class DataTest(unittest.TestCase):
+        def test_without_parameter(self):
+            self.assertEqual(write_file(), True)
+        def test_with_parameter(self):
+            self.assertEqual(write_file(data="""1. Let a: S" S" be the antipodal map (defined by a(z) = -x).
+            "Prove that a is homotopic to the identity if n is odd. [Hint. Consider n = 1 first. Later in the course
+            "it will be shown that a is not homotopic to the identity if n is even.]""", filename= "fox.txt"), True)
+
+    if __name__=='__main__':
+        unittest.main() 
     # Minimum and maximum temperatures
     TEMP_MIN = 20
     TEMP_MAX = 90
-
+    random_integer=randint(10,100)
     # Length of temperature list
     # (higher produces more realistic curve)
     SERIES_DENSITY = 300
